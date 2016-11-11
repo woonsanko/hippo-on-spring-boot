@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><sv:node xmlns:sv="http://www.jcp.org/jcr/sv/1.0" xmlns:esv="http://www.onehippo.org/jcr/xmlimport" sv:name="essentials-eventbus-listener" esv:merge="combine">
+  <sv:node sv:name="hippo:moduleconfig" esv:merge="combine">
+    <sv:property sv:name="projectNamespace" sv:type="String" esv:merge="override">
+      <sv:value>hippoonspringboot</sv:value>
+    </sv:property>
+  </sv:node>
+</sv:node>

@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <project>
-  <projectNamespace>hippoonspringboot</projectNamespace>
-  <confirmParams>false</confirmParams>
-  <selectedProjectPackage>com.github.woonsanko.examples.hippoboot</selectedProjectPackage>
-  <selectedBeansPackage>com.github.woonsanko.examples.hippoboot.beans</selectedBeansPackage>
-  <selectedComponentsPackage>com.github.woonsanko.examples.hippoboot.components</selectedComponentsPackage>
-  <selectedRestPackage>com.github.woonsanko.examples.hippoboot.rest</selectedRestPackage>
-  <setupDone>false</setupDone>
-  <templateLanguage>freemarker</templateLanguage>
-  <useSamples>true</useSamples>
-  <extraTemplates>true</extraTemplates>
+    <name>project-settings</name>
+    <beansFolder>site/src/main/java</beansFolder>
+    <bootstrapModule>bootstrap</bootstrapModule>
+    <cmsModule>cms</cmsModule>
+    <confirmParams>false</confirmParams>
+    <extraTemplates>true</extraTemplates>
+    <projectNamespace>hippoonspringboot</projectNamespace>
+    <selectedBeansPackage>com.github.woonsanko.examples.hippoboot.beans</selectedBeansPackage>
+    <selectedComponentsPackage>com.github.woonsanko.examples.hippoboot.components</selectedComponentsPackage>
+    <selectedProjectPackage>com.github.woonsanko.examples.hippoboot</selectedProjectPackage>
+    <selectedRestPackage>com.github.woonsanko.examples.hippoboot.rest</selectedRestPackage>
+    <setupDone>true</setupDone>
+    <siteModule>site</siteModule>
+    <templateLanguage>freemarker</templateLanguage>
+    <useSamples>true</useSamples>
+    <webfilesSubModule>webfiles</webfilesSubModule>
 </project>
