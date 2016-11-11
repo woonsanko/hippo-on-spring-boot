@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<project>
+  <projectNamespace>hippoonspringboot</projectNamespace>
+  <confirmParams>false</confirmParams>
+  <selectedProjectPackage>com.github.woonsanko.examples.hippoboot</selectedProjectPackage>
+  <selectedBeansPackage>com.github.woonsanko.examples.hippoboot.beans</selectedBeansPackage>
+  <selectedComponentsPackage>com.github.woonsanko.examples.hippoboot.components</selectedComponentsPackage>
+  <selectedRestPackage>com.github.woonsanko.examples.hippoboot.rest</selectedRestPackage>
+  <setupDone>false</setupDone>
+  <templateLanguage>freemarker</templateLanguage>
+  <useSamples>true</useSamples>
+  <extraTemplates>true</extraTemplates>
+</project>
