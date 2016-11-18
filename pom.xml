@@ -235,6 +235,7 @@
         <module>cms</module>
         <module>site</module>
         <module>essentials</module>
+        <module>spring-boot-deploy</module>
       </modules>
     </profile>
 
