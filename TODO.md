@@ -6,3 +6,5 @@
 
 - Logging customization
 
+- Make sure each webapp has separate classloader. I assume so in tomcat-embedded level.
+
