@@ -42,6 +42,11 @@
     </dependency>
     <dependency>
       <groupId>com.github.woonsanko</groupId>
+      <artifactId>hippo-on-spring-boot-bootstrap-content</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.github.woonsanko</groupId>
       <artifactId>hippo-on-spring-boot-bootstrap-webfiles</artifactId>
       <version>${project.version}</version>
     </dependency>
