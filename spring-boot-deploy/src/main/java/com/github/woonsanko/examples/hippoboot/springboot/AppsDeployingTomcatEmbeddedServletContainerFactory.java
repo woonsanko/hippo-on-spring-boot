@@ -15,16 +15,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainer;
 import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
 
-public class MultiWarTomcatEmbeddedServletContainerFactory extends TomcatEmbeddedServletContainerFactory {
+public class AppsDeployingTomcatEmbeddedServletContainerFactory extends TomcatEmbeddedServletContainerFactory {
 
-    private static Logger log = LoggerFactory.getLogger(MultiWarTomcatEmbeddedServletContainerFactory.class);
+    private static Logger log = LoggerFactory.getLogger(AppsDeployingTomcatEmbeddedServletContainerFactory.class);
 
     private File appBaseDirectory;
 
-    public MultiWarTomcatEmbeddedServletContainerFactory(CatalinaConfiguration catalinaConfiguration) {
+    public AppsDeployingTomcatEmbeddedServletContainerFactory(EmbeddedCatalinaConfiguration embeddedCatalinaConfiguration) {
         super();
 
-        final String base = catalinaConfiguration.getBase();
+        final String base = embeddedCatalinaConfiguration.getBase();
 
         if (base != null && !base.isEmpty()) {
             File baseDir = new File(base);
@@ -36,7 +36,7 @@ public class MultiWarTomcatEmbeddedServletContainerFactory extends TomcatEmbedde
             setBaseDirectory(baseDir);
         }
 
-        final String appBase = catalinaConfiguration.getAppBase();
+        final String appBase = embeddedCatalinaConfiguration.getAppBase();
 
         if (appBase != null && !appBase.isEmpty()) {
             File appBaseDir = new File(appBase);

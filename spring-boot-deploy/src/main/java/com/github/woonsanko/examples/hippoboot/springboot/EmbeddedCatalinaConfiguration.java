@@ -21,7 +21,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @ConfigurationProperties(prefix = "embedded.catalina")
-public class CatalinaConfiguration {
+public class EmbeddedCatalinaConfiguration {
 
     private String base;
     private String appBase;
