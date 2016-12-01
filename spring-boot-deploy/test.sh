@@ -6,7 +6,7 @@ EMBEDDED_CATALINA_APP_BASE=$EMBEDDED_CATALINA_BASE/webapps
 mkdir $EMBEDDED_CATALINA_BASE
 mkdir $EMBEDDED_CATALINA_APP_BASE
 cp -R ../cms/target/cms $EMBEDDED_CATALINA_APP_BASE/
-cp -R ../site/target/site $EMBEDDED_CATALINA_APP_BASE/
+cp -R ../site/target/site $EMBEDDED_CATALINA_APP_BASE/ROOT
 
 java -Xms512m -Xmx1024m \
     -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=8000,suspend=n \

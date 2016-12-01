@@ -83,11 +83,22 @@ public class AppsDeployingTomcatEmbeddedServletContainerFactory extends TomcatEm
             File webappsDir = getAppBaseDirectory();
 
             if (webappsDir.isDirectory()) {
+                String fileName;
+                String baseFileName;
                 String contextPath;
                 String basePath;
 
                 for (File file : webappsDir.listFiles()) {
-                    contextPath = "/" + file.getName();
+                    fileName = file.getName();
+                    int offset = fileName.lastIndexOf('.');
+                    baseFileName = (offset != -1) ? fileName.substring(0, offset) : fileName;
+
+                    if ("ROOT".equals(baseFileName)) {
+                        contextPath = "";
+                    } else {
+                        contextPath = "/" + baseFileName;
+                    }
+
                     basePath = file.getAbsolutePath();
 
                     if (file.isDirectory() || (file.isFile() && file.getName().endsWith(".war"))) {
