@@ -24,6 +24,7 @@ import org.springframework.stereotype.Component;
 public class CatalinaConfiguration {
 
     private String base;
+    private String appBase;
 
     public String getBase() {
         return base;
@@ -31,6 +32,14 @@ public class CatalinaConfiguration {
 
     public void setBase(String base) {
         this.base = base;
+    }
+
+    public String getAppBase() {
+        return appBase;
+    }
+
+    public void setAppBase(String appBase) {
+        this.appBase = appBase;
     }
 
 }

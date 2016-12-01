@@ -12,7 +12,6 @@ import org.apache.catalina.loader.WebappLoader;
 import org.apache.catalina.startup.Tomcat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainer;
 import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
 
@@ -20,24 +19,33 @@ public class MultiWarTomcatEmbeddedServletContainerFactory extends TomcatEmbedde
 
     private static Logger log = LoggerFactory.getLogger(MultiWarTomcatEmbeddedServletContainerFactory.class);
 
-    private File catalinaBaseDirectory;
+    private File appBaseDirectory;
 
-    @Autowired
     public MultiWarTomcatEmbeddedServletContainerFactory(CatalinaConfiguration catalinaConfiguration) {
         super();
 
         final String base = catalinaConfiguration.getBase();
 
         if (base != null && !base.isEmpty()) {
-            catalinaBaseDirectory = new File(base);
-            catalinaBaseDirectory.mkdirs();
-            log.info("Embedded catalog base directory: {}", catalinaBaseDirectory.getAbsolutePath());
-            setBaseDirectory(catalinaBaseDirectory);
-        }
-    }
+            File baseDir = new File(base);
 
-    protected File getBaseDirectory() {
-        return catalinaBaseDirectory;
+            if (!baseDir.isDirectory()) {
+                baseDir.mkdirs();
+            }
+
+            setBaseDirectory(baseDir);
+        }
+
+        final String appBase = catalinaConfiguration.getAppBase();
+
+        if (appBase != null && !appBase.isEmpty()) {
+            File appBaseDir = new File(appBase);
+
+            if (appBaseDir.isDirectory()) {
+                log.info("Embedded catalog appBase: {}", appBaseDir.getAbsolutePath());
+                setAppBaseDirectory(appBaseDir);
+            }
+        }
     }
 
     protected TomcatEmbeddedServletContainer getTomcatEmbeddedServletContainer(Tomcat tomcat) {
@@ -59,12 +67,20 @@ public class MultiWarTomcatEmbeddedServletContainerFactory extends TomcatEmbedde
         return super.getTomcatEmbeddedServletContainer(tomcat);
     }
 
+    protected File getAppBaseDirectory() {
+        return appBaseDirectory;
+    }
+
+    protected void setAppBaseDirectory(File appBaseDirectory) {
+        this.appBaseDirectory = appBaseDirectory;
+    }
+
     private Map<String, String> getWebappPathsMap() {
         Map<String, String> webappPathsMap = null;
 
-        if (getBaseDirectory() != null) {
+        if (getAppBaseDirectory() != null) {
             webappPathsMap = new LinkedHashMap<>();
-            File webappsDir = new File(getBaseDirectory(), "webapps");
+            File webappsDir = getAppBaseDirectory();
 
             if (webappsDir.isDirectory()) {
                 String contextPath;
