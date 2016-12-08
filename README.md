@@ -16,3 +16,7 @@ WARNING: Very experimental!
     $ cd spring-boot-deploy
     $ ./test.sh
 ```
+
+## Test
+
+Visit http://localhost:8080/site/ and http://localhost:8080/cms/.

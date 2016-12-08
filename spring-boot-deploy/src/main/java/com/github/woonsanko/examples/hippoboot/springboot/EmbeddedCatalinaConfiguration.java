@@ -25,6 +25,7 @@ public class EmbeddedCatalinaConfiguration {
 
     private String base;
     private String appBase;
+    private String wars;
 
     public String getBase() {
         return base;
@@ -40,6 +41,14 @@ public class EmbeddedCatalinaConfiguration {
 
     public void setAppBase(String appBase) {
         this.appBase = appBase;
+    }
+
+    public String getWars() {
+        return wars;
+    }
+
+    public void setWars(String wars) {
+        this.wars = wars;
     }
 
 }

@@ -67,10 +67,48 @@
   </dependencies>
 
   <build>
+
     <plugins>
+
+      <plugin>
+        <artifactId>maven-resources-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>copy-resources</id>
+            <phase>prepare-package</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${basedir}/target/classes/META-INF/embedded-catalina/webapps</outputDirectory>
+              <resources>
+                <resource>
+                  <filtering>false</filtering>
+                  <directory>${basedir}/../cms/target</directory>
+                  <includes>
+                    <include>*.war</include>
+                  </includes>
+                </resource>
+                <resource>
+                  <filtering>false</filtering>
+                  <directory>${basedir}/../site/target</directory>
+                  <includes>
+                    <include>*.war</include>
+                  </includes>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+          <layout>ZIP</layout>
+          <executable>true</executable>
+        </configuration>
         <executions>
           <execution>
             <goals>
@@ -79,7 +117,9 @@
           </execution>
         </executions>
       </plugin>
+
     </plugins>
+
   </build>
 
 </project>
