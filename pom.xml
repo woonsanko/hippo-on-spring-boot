@@ -69,7 +69,7 @@
     <xalan.version>2.7.1</xalan.version>
     <junit.version>4.10</junit.version>
     <easymock.version>3.1</easymock.version>
-     
+
     <repo.bootstrap>true</repo.bootstrap>
     <content-module-deploy-dir>shared/lib</content-module-deploy-dir>
 
@@ -82,6 +82,11 @@
       <id>hippo</id>
       <name>Hippo maven 2 repository.</name>
       <url>https://maven.onehippo.com/maven2/</url>
+    </repository>
+    <repository>
+      <id>hipshoot-maven-repo</id>
+      <name>hipshoot Maven 2 Repository</name>
+      <url>http://forge.onehippo.org/svn/hipshoot/maven2/</url>
     </repository>
   </repositories>
 

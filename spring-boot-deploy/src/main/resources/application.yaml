@@ -1,0 +1,64 @@
+#  Licensed to the Apache Software Foundation (ASF) under one or more
+#  contributor license agreements.  See the NOTICE file distributed with
+#  this work for additional information regarding copyright ownership.
+#  The ASF licenses this file to You under the Apache License, Version 2.0
+#  (the "License"); you may not use this file except in compliance with
+#  the License.  You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#  See the License for the specific language governing permissions and
+#  limitations under the License.
+
+logging:
+    level:
+        root: 'WARN'
+        org.springframework.boot: 'INFO'
+        org.onehippo.forge.hipshoot.spring.boot.support: 'INFO'
+        org.hippoecm.hst.core.container.DiagnosticReportingValve: 'INFO'
+        freemarker.servlet: 'FATAL'
+        org.apache.wicket.Localizer: 'ERROR'
+        org.hippoecm.repository.jackrabbit.persistence: 'INFO'
+        org.hippoecm.repository.updater: 'INFO'
+        org.apache.jackrabbit.core.persistence.bundle: 'INFO'
+        org.apache.jackrabbit.core.state: 'ERROR'
+        org.apache.jackrabbit.core.ItemManager: 'ERROR'
+        org.apache.jackrabbit.core.persistence.bundle.util.LRUNodeIdCache: 'ERROR'
+
+server:
+    tomcat:
+        basedir: 'target/embedded-tomcat'
+
+hipshoot:
+    embedded:
+        catalina:
+            namingEnabled: 'true'
+            persistSession: 'false'
+            appBase: '${server.tomcat.basedir}/webapps'
+            wars: 'cms.war, site.war'
+            server:
+                defaultContext:
+                    resources:
+                        cachingAllowed: 'true'
+                        cacheMaxSize: '40960'
+                globalNamingResources:
+                    - name: 'mail/Session'
+                      auth: 'Container'
+                      type: 'javax.mail.Session'
+                      propertiesString: 'mail.smtp.host=localhost, mail.smtp.port=2525'
+                    - name: 'jdbc/repositoryDS'
+                      auth: 'Container'
+                      type: 'javax.sql.DataSource'
+                      properties:
+                          driverClassName: 'org.hsqldb.jdbc.JDBCDriver'
+                          url: 'jdbc:hsqldb:mem:mymemdb'
+                          username: 'SA'
+                          password: ''
+                          initialSize: '2'
+                          maxTotal: '20'
+                          maxIdle: '10'
+                          minIdle: '2'
+                          maxWaitMillis: '10000'
