@@ -32,3 +32,7 @@ You can simply type Ctrl-C to stop it.
 
 Visit [http://localhost:8080/site/](http://localhost:8080/site/) and
 [http://localhost:8080/cms/](http://localhost:8080/cms/).
+
+## Deploying to the cloud (e.g, Cloud Foundry, Heroku, etc.)
+
+See [Deploying to the cloud](http://docs.spring.io/spring-boot/docs/current/reference/html/cloud-deployment.html)
