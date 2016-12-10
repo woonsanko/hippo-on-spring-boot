@@ -1,8 +1,6 @@
 # hippo-on-spring-boot
 
-hippo-on-spring-boot
-
-WARNING: Very experimental!
+**hippo-on-spring-boot**, an experiment to wrap a Hippo project in a single executable Spring Boot application.
 
 ## Build
 
