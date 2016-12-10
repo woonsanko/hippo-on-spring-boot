@@ -1,6 +1,6 @@
 # hippo-on-spring-boot
 
-**hippo-on-spring-boot**, a experimental demo project to wrap a Hippo project into single JAR executable Spring Boot application.
+**hippo-on-spring-boot**, a demo project to wrap a Hippo project into single JAR executable Spring Boot application.
 
 This project uses [hipshoot Spring Boot Support library](http://hipshoot.forge.onehippo.org/hipshoot-spring-boot-support/index.html)
 to wrap a Hippo project into a Spring Boot application package.
