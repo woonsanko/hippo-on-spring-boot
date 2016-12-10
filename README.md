@@ -26,12 +26,19 @@ In summary,
     $ ./test.sh
 ```
 
+See [test.sh](spring-boot-deploy/test.sh). It's just a simple ```java``` command line.
+
+
 You can simply type Ctrl-C to stop it.
 
 ## Test
 
 Visit [http://localhost:8080/site/](http://localhost:8080/site/) and
 [http://localhost:8080/cms/](http://localhost:8080/cms/).
+
+## Default Application Configuration
+
+See [application.yaml](spring-boot-deploy/src/main/resources/application.yaml).
 
 ## Deploying to the cloud (e.g, Cloud Foundry, Heroku, etc.)
 
