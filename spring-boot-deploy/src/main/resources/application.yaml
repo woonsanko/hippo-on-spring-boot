@@ -27,6 +27,7 @@ logging:
         org.apache.jackrabbit.core.state: 'ERROR'
         org.apache.jackrabbit.core.ItemManager: 'ERROR'
         org.apache.jackrabbit.core.persistence.bundle.util.LRUNodeIdCache: 'ERROR'
+        com.github.woonsanko.examples.hippoboot.springboot: 'INFO'
 
 server:
     tomcat:

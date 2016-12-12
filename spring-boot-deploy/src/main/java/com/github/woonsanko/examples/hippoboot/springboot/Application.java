@@ -16,7 +16,12 @@
  */
 package com.github.woonsanko.examples.hippoboot.springboot;
 
+import org.apache.catalina.Lifecycle;
+import org.apache.catalina.LifecycleEvent;
+import org.apache.catalina.LifecycleListener;
+import org.apache.catalina.startup.Tomcat;
 import org.onehippo.forge.hipshoot.spring.boot.support.AppsDeployingTomcatEmbeddedServletContainerFactory;
+import org.onehippo.forge.hipshoot.spring.boot.support.TomcatCustomizer;
 import org.onehippo.forge.hipshoot.spring.boot.support.config.embedded.CatalinaConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -69,9 +74,28 @@ public class Application {
     public EmbeddedServletContainerFactory servletContainerFactory() {
         AppsDeployingTomcatEmbeddedServletContainerFactory factory = new AppsDeployingTomcatEmbeddedServletContainerFactory(
                 catalinaConfiguration);
-        // change the default root context path to /boot (helpful when deploying SITE as ROOT.war).
+
+        // You may change the default root context path to /boot (helpful when deploying SITE as ROOT.war).
         //factory.setContextPath("/boot");
+
+        // Also, you may add a tomcat customizer of your own.
+        factory.addTomcatCustomizer(new MyTomcatCustomizer());
+
         return factory;
     }
 
+    private static class MyTomcatCustomizer implements TomcatCustomizer {
+        @Override
+        public void customize(Tomcat tomcat, CatalinaConfiguration catalinaConfiguration) {
+            tomcat.getServer().addLifecycleListener(new LifecycleListener() {
+                @Override
+                public void lifecycleEvent(LifecycleEvent event) {
+                    if (Lifecycle.BEFORE_START_EVENT.equals(event.getType())) {
+                        log.info("An example tomcat lifecycle event listener...");
+                        log.info("For example, you can restore lucene index directory from somewhere here if missing.");
+                    }
+                }
+            });
+        }
+    }
 }
