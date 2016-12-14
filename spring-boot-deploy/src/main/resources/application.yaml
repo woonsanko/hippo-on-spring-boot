@@ -36,7 +36,6 @@ server:
 hipshoot:
     embedded:
         catalina:
-            namingEnabled: 'true'
             persistSession: 'false'
             appBase: '${server.tomcat.basedir}/webapps'
             wars: 'cms.war, site.war'
@@ -45,6 +44,17 @@ hipshoot:
                     resources:
                         cachingAllowed: 'true'
                         cacheMaxSize: '40960'
+                    environments:
+                        - type: 'java.lang.String'
+                          name: "foo"
+                          value: "bar"
+                    parameters:
+                        - name: 'repository-address'
+                          value: 'rmi://127.0.0.1:1099/hipporepository'
+                          override: 'false'
+                        - name: 'repository-directory'
+                          value: 'storage'
+                          override: 'false'
                 globalNamingResources:
                     - name: 'mail/Session'
                       auth: 'Container'

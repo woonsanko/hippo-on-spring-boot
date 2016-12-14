@@ -10,7 +10,7 @@ In summary,
 - Simply added some built-in example features using Essentials such as News, Events, etc.
 - Added [spring-boot-deploy](spring-boot-deploy/) Maven submodule which lets us wrap Hippo project into single JAR executable Spring Boot application
   by following [hipshoot Spring Boot Support library](http://hipshoot.forge.onehippo.org/hipshoot-spring-boot-support/index.html).
-- Added [test.sh](spring-boot-deploy/test.sh) to execute the single executable JAR.
+- Added [test.sh](spring-boot-deploy/test.sh) and [test.bat](spring-boot-deploy/test.bat) to show how to execute the single executable JAR.
 - That's it.
 
 ## Build
@@ -26,7 +26,16 @@ In summary,
     $ ./test.sh
 ```
 
-See [test.sh](spring-boot-deploy/test.sh). It's just a simple ```java``` command line.
+Or, on Windows,
+
+```bash
+    > cd spring-boot-deploy
+    > test.bat
+```
+
+
+See [test.sh](spring-boot-deploy/test.sh) or [test.bat](spring-boot-deploy/test.bat).
+It's just a simple ```java``` command line.
 
 
 You can simply type Ctrl-C to stop it.

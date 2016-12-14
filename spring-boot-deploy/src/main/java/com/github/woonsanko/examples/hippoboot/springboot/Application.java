@@ -33,6 +33,8 @@ import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletCon
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * An example Spring Boot application with an extended {@link TomcatEmbeddedServletContainerFactory},
@@ -43,6 +45,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @SpringBootApplication
 @ComponentScan(basePackages = { "org.onehippo.forge.hipshoot.spring.boot.support.config.embedded" })
+@RestController
 public class Application {
 
     private static Logger log = LoggerFactory.getLogger(Application.class);
@@ -53,6 +56,11 @@ public class Application {
      */
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
+    }
+
+    @RequestMapping(path = "/ping")
+    public void ping() {
+        log.info("Empty ping result with HTTP 200.");
     }
 
     /**
@@ -79,14 +87,14 @@ public class Application {
         //factory.setContextPath("/boot");
 
         // Also, you may add a tomcat customizer of your own.
-        factory.addTomcatCustomizer(new MyTomcatCustomizer());
+        factory.addTomcatCustomizers(new MyTomcatCustomizer());
 
         return factory;
     }
 
     private static class MyTomcatCustomizer implements TomcatCustomizer {
         @Override
-        public void customize(Tomcat tomcat, CatalinaConfiguration catalinaConfiguration) {
+        public void customize(Tomcat tomcat) {
             tomcat.getServer().addLifecycleListener(new LifecycleListener() {
                 @Override
                 public void lifecycleEvent(LifecycleEvent event) {
