@@ -41,6 +41,13 @@
 
   <dependencies>
 
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>3.1.0</version>
+      <scope>provided</scope>
+    </dependency>
+
     <!-- Let this application be a spring boot web application simply. -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
