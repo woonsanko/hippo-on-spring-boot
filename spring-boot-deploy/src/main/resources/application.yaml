@@ -30,7 +30,7 @@ logging:
         com.github.woonsanko.examples.hippoboot.springboot: 'INFO'
 
 server:
-    port: '${port:9080}'
+    port: '${port:8080}'
     tomcat:
         basedir: 'target/embedded-tomcat'
 
