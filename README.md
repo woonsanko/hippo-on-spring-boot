@@ -51,4 +51,11 @@ See [application.yaml](spring-boot-deploy/src/main/resources/application.yaml).
 
 ## Deploying to the cloud (e.g, Cloud Foundry, Heroku, etc.)
 
-See [Deploying to the cloud](http://docs.spring.io/spring-boot/docs/current/reference/html/cloud-deployment.html)
+See [Deploying to the cloud](http://docs.spring.io/spring-boot/docs/current/reference/html/cloud-deployment.html) in Spring Boot documentation for detail.
+
+You could use a very simple command like this when deploying onto Cloud Foundry, for example:
+
+    cd spring-boot-deploy
+    cf push hippo-on-spring-boot -p target/hippo-on-spring-boot-spring-boot-deploy-0.1.0-SNAPSHOT.jar -m 2G -t 180
+
+
