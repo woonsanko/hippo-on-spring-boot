@@ -16,21 +16,21 @@ In summary,
 ## Build
 
 ```bash
-    $ mvn clean package
+$ mvn clean package
 ```
 
 ## Run
 
 ```bash
-    $ cd spring-boot-deploy
-    $ ./test.sh
+$ cd spring-boot-deploy
+$ ./test.sh
 ```
 
 Or, on Windows,
 
 ```bash
-    > cd spring-boot-deploy
-    > test.bat
+> cd spring-boot-deploy
+> test.bat
 ```
 
 
@@ -55,7 +55,9 @@ See [Deploying to the cloud](http://docs.spring.io/spring-boot/docs/current/refe
 
 You could use a very simple command like this when deploying onto Cloud Foundry, for example:
 
-    cd spring-boot-deploy
-    cf push hippo-on-spring-boot -p target/hippo-on-spring-boot-spring-boot-deploy-0.1.0-SNAPSHOT.jar -m 2G -t 180
+```bash
+$ cd spring-boot-deploy
+$ cf push hippo-on-spring-boot -p target/hippo-on-spring-boot-spring-boot-deploy-0.1.0-SNAPSHOT.jar -m 2G -t 180
+```
 
 
