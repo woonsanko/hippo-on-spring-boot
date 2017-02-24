@@ -12,6 +12,13 @@
   <name>Example Hippo On Spring Boot CMS</name>
   <description>Example Hippo On Spring Boot CMS</description>
   <dependencies>
+
+    <dependency>
+      <groupId>org.onehippo.forge.hipshoot</groupId>
+      <artifactId>hipshoot-spring-boot-support</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+
     <dependency>
       <groupId>org.onehippo.cms7.hst.dependencies</groupId>
       <artifactId>hst-repository-dependencies</artifactId>

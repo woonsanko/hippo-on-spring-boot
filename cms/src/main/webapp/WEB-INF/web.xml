@@ -159,7 +159,11 @@
   <!-- Repository -->
   <servlet>
     <servlet-name>Repository</servlet-name>
-    <servlet-class>org.hippoecm.repository.RepositoryServlet</servlet-class>
+    <servlet-class>org.onehippo.forge.hipshoot.spring.boot.support.servlet.DeferredInitDelegatingServlet</servlet-class>
+    <init-param>
+      <param-name>DeferredInitDelegatingServlet.delegateServletClass</param-name>
+      <param-value>org.hippoecm.repository.RepositoryServlet</param-value>
+    </init-param>
     <load-on-startup>4</load-on-startup>
   </servlet>
 
