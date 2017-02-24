@@ -60,4 +60,8 @@ $ cd spring-boot-deploy
 $ cf push hippo-on-spring-boot -p target/hippo-on-spring-boot-spring-boot-deploy-0.1.0-SNAPSHOT.jar -m 2G -t 180
 ```
 
+## Option for Deferred Initialization of RepositoryServlet
 
+Sometimes, you might want to start up the servlet container fast enough without waiting for the Hippo ```RepositoryServlet``` to complete its long initialization steps (such as storage and lucene index recreation). If its initialization time is more than some threshold (e.g, 60 seconds by default in CloudFoundry), it could cause failing of the **push**.
+
+So, in this demo project, the **Repository** servlet in [cms/src/main/webapp/WEB-INF/web.xml](cms/src/main/webapp/WEB-INF/web.xml#L159:L168) was replaced by [DeferredInitDelegatingServlet](http://hipshoot.forge.onehippo.org/apidocs/org/onehippo/forge/hipshoot/spring/boot/support/servlet/DeferredInitDelegatingServlet.html) for *deferred asynchronous initialization*. This way, you can start up the servlet container fast enough without having to wait for the **RepositoryServlet** to initialize synchronously. This optional feature can be very helpful when deploying onto cloud based platform such as CloudFoundry.
