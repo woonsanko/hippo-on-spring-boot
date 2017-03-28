@@ -23,8 +23,32 @@ $ mvn clean package
 
 ```bash
 $ cd spring-boot-deploy
+$ rm -rf ./repository/
 $ ./test.sh
 ```
+
+You can also pass environment-specific profile ('prod', 'acct', 'test', etc.):
+
+```bash
+$ cd spring-boot-deploy
+$ rm -rf ./repository/
+$ ./test.sh --spring.profiles.active=prod
+```
+
+For environment specific profiles, please see [application.yml](spring-boot-deploy/src/main/resources/application.yml).
+Also, please look up Spring Boot Reference documentation about how to configure/use multiple profiles in application.yml file.
+
+The last command (```./test.sh --spring.profiles.active=prod```) can be replaced with this (by setting environment variable for environment profile instead):
+
+```bash
+    $ export SPRING_PROFILES_ACTIVE=prod
+    $ ./test.sh
+```
+
+Or, you can update ```test.sh``` to pass a system property instead (e.g, ```-Dspring.profiles.active=prod```) instead, too.
+
+    Note: you can skip removing ./repository/ directory if you want to keep the existing Hippo repository storage directory.
+
 
 Or, on Windows,
 
@@ -45,7 +69,7 @@ You can simply type Ctrl-C to stop it.
 Visit [http://localhost:8080/site/](http://localhost:8080/site/) and
 [http://localhost:8080/cms/](http://localhost:8080/cms/).
 
-## Default Application Configuration
+## Application Configuration
 
 See [application.yml](spring-boot-deploy/src/main/resources/application.yml).
 
@@ -53,12 +77,15 @@ See [application.yml](spring-boot-deploy/src/main/resources/application.yml).
 
 See [Deploying to the cloud](http://docs.spring.io/spring-boot/docs/current/reference/html/cloud-deployment.html) in Spring Boot documentation for detail.
 
-You could use a very simple command like this when deploying onto Cloud Foundry, for example:
+You can use very simple commands like the following example when deploying onto Cloud Foundry:
 
 ```bash
 $ cd spring-boot-deploy
 $ cf login -a https://api.run.pivotal.io
-$ cf push hippo-on-spring-boot -f manifest.yml -p target/hippo-on-spring-boot-spring-boot-deploy-0.1.0-SNAPSHOT.jar -t 180
+$ cf push hippo-on-spring-boot \
+    -f manifest.yml \
+    -p target/hippo-on-spring-boot-spring-boot-deploy-0.1.0-SNAPSHOT.jar \
+    -t 180
 ```
 
 To stop the application: ```cf stop spring-boot-deploy```
