@@ -47,7 +47,7 @@ Visit [http://localhost:8080/site/](http://localhost:8080/site/) and
 
 ## Default Application Configuration
 
-See [application.yaml](spring-boot-deploy/src/main/resources/application.yaml).
+See [application.yml](spring-boot-deploy/src/main/resources/application.yml).
 
 ## Deploying to the cloud (e.g, Cloud Foundry, Heroku, etc.)
 
@@ -57,8 +57,21 @@ You could use a very simple command like this when deploying onto Cloud Foundry,
 
 ```bash
 $ cd spring-boot-deploy
-$ cf push hippo-on-spring-boot -p target/hippo-on-spring-boot-spring-boot-deploy-0.1.0-SNAPSHOT.jar -m 2G -t 180
+$ cf login -a https://api.run.pivotal.io
+$ cf push hippo-on-spring-boot -f manifest.yml -p target/hippo-on-spring-boot-spring-boot-deploy-0.1.0-SNAPSHOT.jar -t 180
 ```
+
+To stop the application: ```cf stop spring-boot-deploy```
+
+To delete the application: ```cf delete spring-boot-deploy```
+
+You can also monitor the application through PCF Console (e.g, https://console.run.pivotal.io/).
+
+After deployment, for example, you can visit:
+
+  - CMS: https://spring-boot-deploy.cfapps.io/cms/
+  - SITE: https://spring-boot-deploy.cfapps.io/site/
+
 
 ## Option for Deferred Initialization of RepositoryServlet
 

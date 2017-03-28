@@ -95,6 +95,9 @@ public class Application {
     private static class MyTomcatCustomizer implements TomcatCustomizer {
         @Override
         public void customize(Tomcat tomcat) {
+            // Set bootstrap.enabled=true for now. You can make this configurable from application.yml later.
+            System.setProperty("repo.boostrap", "true");
+
             tomcat.getServer().addLifecycleListener(new LifecycleListener() {
                 @Override
                 public void lifecycleEvent(LifecycleEvent event) {
