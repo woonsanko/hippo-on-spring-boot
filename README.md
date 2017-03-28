@@ -47,7 +47,7 @@ $ ./test.sh
 
 Or, you can update ```test.sh``` to pass a system property instead (e.g, ```-Dspring.profiles.active=prod```) instead, too.
 
-Note: you can skip removing ./repository/ directory if you want to keep the existing Hippo repository storage directory.
+*Note*: you can skip removing ./repository/ directory if you want to keep the existing Hippo repository storage directory.
 
 
 Or, on Windows,
@@ -99,6 +99,10 @@ After deployment, for example, you can visit:
   - CMS: https://spring-boot-deploy.cfapps.io/cms/
   - SITE: https://spring-boot-deploy.cfapps.io/site/
 
+*Note*: Please also take a look at [manifest.yml](spring-boot-deploy/manifest.yml) which defines various environment settings.
+Especially, ```JBP_CONFIG_SPRING_AUTO_RECONFIGURATION: '[enabled: false]'``` must be set in order to disable 
+[PCF Auto-Reconfiguration](https://docs.pivotal.io/pivotalcf/1-10/buildpacks/java/spring-service-bindings.html#auto) feature.
+Otherwise, the JNDI resources such as DataSources would cause problems in this kind of *multi-wars* based deployment scenarios.
 
 ## Option for Deferred Initialization of RepositoryServlet
 
