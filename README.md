@@ -41,13 +41,13 @@ Also, please look up Spring Boot Reference documentation about how to configure/
 The last command (```./test.sh --spring.profiles.active=prod```) can be replaced with this (by setting environment variable for environment profile instead):
 
 ```bash
-    $ export SPRING_PROFILES_ACTIVE=prod
-    $ ./test.sh
+$ export SPRING_PROFILES_ACTIVE=prod
+$ ./test.sh
 ```
 
 Or, you can update ```test.sh``` to pass a system property instead (e.g, ```-Dspring.profiles.active=prod```) instead, too.
 
-    Note: you can skip removing ./repository/ directory if you want to keep the existing Hippo repository storage directory.
+Note: you can skip removing ./repository/ directory if you want to keep the existing Hippo repository storage directory.
 
 
 Or, on Windows,
