@@ -87,9 +87,9 @@
       <url>https://maven.onehippo.com/maven2/</url>
     </repository>
     <repository>
-      <id>hipshoot-maven-repo</id>
-      <name>hipshoot Maven 2 Repository</name>
-      <url>http://forge.onehippo.org/svn/hipshoot/maven2/</url>
+      <id>hippo-maven2-forge</id>
+      <name>Hippo Maven 2 Forge Repository</name>
+      <url>http://maven.onehippo.com/maven2-forge/</url>
     </repository>
   </repositories>
 
