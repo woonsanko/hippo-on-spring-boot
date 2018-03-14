@@ -2,7 +2,7 @@
 
 **hippo-on-spring-boot**, a demo project to wrap a Hippo project into single JAR executable Spring Boot application.
 
-This project uses [hipshoot Spring Boot Support library](http://hipshoot.forge.onehippo.org/hipshoot-spring-boot-support/index.html)
+This project uses [hipshoot Spring Boot Support library](https://onehippo-forge.github.io/hipshoot/hipshoot-spring-boot-support/index.html)
 to wrap a Hippo project into a Spring Boot application package.
 
 In summary,
@@ -63,6 +63,10 @@ It's just a simple ```java``` command line.
 
 
 You can simply type Ctrl-C to stop it.
+
+## How to Apply it to your project?
+
+Follow [HOWTO.md](HOWTO.md).
 
 ## Test
 
