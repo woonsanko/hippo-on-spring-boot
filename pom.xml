@@ -5,21 +5,21 @@
   <parent>
     <groupId>org.onehippo.cms7</groupId>
     <artifactId>hippo-cms7-release</artifactId>
-    <version>11.2.0</version>
+    <version>12.2.0</version>
   </parent>
 
   <name>Example Hippo On Spring Boot</name>
   <description>Example Hippo On Spring Boot</description>
   <groupId>com.github.woonsanko</groupId>
   <artifactId>hippo-on-spring-boot</artifactId>
-  <version>0.1.0-SNAPSHOT</version>
+  <version>1.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
-  <!-- 
+  <!--
     The below project elements are emptied/overridden as otherwise their metadata would be
     inherited or merged from the parent hippo-cms7-release pom (or its hippo-cms7-project pom).
 
-    DO NOT remove these tags but instead fill them in appropriately as needed, 
+    DO NOT remove these tags but instead fill them in appropriately as needed,
     UNLESS the inherited values are valid for your project.
   -->
   <url/>
@@ -66,18 +66,17 @@
 
     <forge.hipshoot.version>0.1.3</forge.hipshoot.version>
 
-    <essentials.version>3.1.0</essentials.version>
+    <essentials.version>4.2.0-1</essentials.version>
     <jsp-api.version>2.2</jsp-api.version>
-    <taglibs.version>1.2.1</taglibs.version>
-    <xalan.version>2.7.1</xalan.version>
-    <junit.version>4.10</junit.version>
-    <easymock.version>3.1</easymock.version>
+    <taglibs.version>1.2.5</taglibs.version>
+    <xalan.version>2.7.2</xalan.version>
+    <junit.version>4.12</junit.version>
+    <easymock.version>3.4</easymock.version>
 
-    <repo.bootstrap>true</repo.bootstrap>
-    <content-module-deploy-dir>shared/lib</content-module-deploy-dir>
+    <development-module-deploy-dir>shared/lib</development-module-deploy-dir>
 
     <hippo.cms.locales>nl,de,fr,es,zh</hippo.cms.locales>
-
+    <buildNumber>${maven.build.timestamp}</buildNumber>
   </properties>
 
   <repositories>
@@ -94,6 +93,7 @@
   </repositories>
 
   <dependencyManagement>
+
     <dependencies>
 
       <dependency>
@@ -251,6 +251,7 @@
       </dependency>
 
     </dependencies>
+
   </dependencyManagement>
 
   <build>
@@ -288,23 +289,6 @@
     </pluginManagement>
     <plugins>
       <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>buildnumber-maven-plugin</artifactId>
-        <executions>
-          <execution>
-            <phase>validate</phase>
-            <goals>
-              <goal>create</goal>
-            </goals>
-          </execution>
-        </executions>
-        <configuration>
-          <doCheck>false</doCheck>
-          <doUpdate>false</doUpdate>
-          <revisionOnScmFailure>-1</revisionOnScmFailure>
-        </configuration>
-      </plugin>
-      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
         <configuration>
@@ -332,7 +316,7 @@
         </property>
       </activation>
       <modules>
-        <module>bootstrap</module>
+        <module>repository-data</module>
         <module>cms</module>
         <module>site</module>
         <module>essentials</module>
@@ -342,6 +326,10 @@
 
     <profile>
       <id>cargo.run</id>
+      <properties>
+        <!--Already defined in hippo-cms-project POM. Override here for project, if necessary-->
+        <!--<repo.bootstrap>true</repo.bootstrap>-->
+      </properties>
       <build>
         <plugins>
           <plugin>
@@ -349,9 +337,6 @@
             <artifactId>cargo-maven2-plugin</artifactId>
             <configuration>
               <configuration>
-                <properties>
-                  <catalina.servlet.uriencoding>UTF-8</catalina.servlet.uriencoding>
-                </properties>
                 <configfiles>
                   <configfile>
                     <file>${project.basedir}/conf/context.xml</file>
@@ -366,8 +351,8 @@
                 </configfiles>
                 <files>
                   <file>
-                    <file>${project.basedir}/bootstrap/content/target/hippo-on-spring-boot-bootstrap-content-${project.version}.jar</file>
-                    <todir>${content-module-deploy-dir}</todir>
+                    <file>${project.basedir}/repository-data/development/target/hippo-on-spring-boot-repository-data-development-${project.version}.jar</file>
+                    <todir>${development-module-deploy-dir}</todir>
                   </file>
                 </files>
               </configuration>
@@ -396,8 +381,7 @@
               </deployables>
               <container>
                 <systemProperties>
-                  <log4j.configuration>file:${project.basedir}/conf/log4j-dev.xml</log4j.configuration>
-                  <rebel.log4j-plugin>true</rebel.log4j-plugin>
+                  <log4j.configurationFile>file://${project.basedir}/conf/log4j2-dev.xml</log4j.configurationFile>
                   <!-- enables auto export and web files watch: -->
                   <project.basedir>${project.basedir}</project.basedir>
                   <send.usage.statistics.to.hippo>true</send.usage.statistics.to.hippo>
@@ -410,11 +394,11 @@
     </profile>
 
     <profile>
-      <!-- additional profile to combine with cargo:run to *not* bootstrap the local content module:
-           $ mvn -P cargo.run,without-content -->
-      <id>without-content</id>
+      <!-- additional profile to combine with cargo:run to *not* bootstrap the development module:
+           $ mvn -P cargo.run,without-development-data -->
+      <id>without-development-data</id>
       <properties>
-        <content-module-deploy-dir>temp</content-module-deploy-dir>
+        <development-module-deploy-dir>temp</development-module-deploy-dir>
       </properties>
     </profile>
 
@@ -422,8 +406,8 @@
       <id>dist</id>
       <dependencies>
         <dependency>
-          <groupId>org.slf4j</groupId>
-          <artifactId>slf4j-log4j12</artifactId>
+          <groupId>org.apache.logging.log4j</groupId>
+          <artifactId>log4j-slf4j-impl</artifactId>
           <scope>provided</scope>
         </dependency>
         <dependency>
@@ -432,8 +416,13 @@
           <scope>provided</scope>
         </dependency>
         <dependency>
-          <groupId>log4j</groupId>
-          <artifactId>log4j</artifactId>
+          <groupId>org.apache.logging.log4j</groupId>
+          <artifactId>log4j-api</artifactId>
+          <scope>provided</scope>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.logging.log4j</groupId>
+          <artifactId>log4j-core</artifactId>
           <scope>provided</scope>
         </dependency>
       </dependencies>
@@ -462,11 +451,11 @@
     </profile>
 
     <profile>
-      <id>dist-with-content</id>
+      <id>dist-with-development-data</id>
       <dependencies>
         <dependency>
-          <groupId>org.slf4j</groupId>
-          <artifactId>slf4j-log4j12</artifactId>
+          <groupId>org.apache.logging.log4j</groupId>
+          <artifactId>log4j-slf4j-impl</artifactId>
           <scope>provided</scope>
         </dependency>
         <dependency>
@@ -475,8 +464,13 @@
           <scope>provided</scope>
         </dependency>
         <dependency>
-          <groupId>log4j</groupId>
-          <artifactId>log4j</artifactId>
+          <groupId>org.apache.logging.log4j</groupId>
+          <artifactId>log4j-api</artifactId>
+          <scope>provided</scope>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.logging.log4j</groupId>
+          <artifactId>log4j-core</artifactId>
           <scope>provided</scope>
         </dependency>
       </dependencies>
@@ -487,14 +481,14 @@
             <artifactId>maven-assembly-plugin</artifactId>
             <executions>
               <execution>
-                <id>distro-assembly-with-content</id>
+                <id>distro-assembly-with-development-data</id>
                 <phase>validate</phase>
                 <goals>
                   <goal>single</goal>
                 </goals>
                 <configuration>
                   <descriptors>
-                    <descriptor>${project.basedir}/src/main/assembly/distribution-with-content.xml</descriptor>
+                    <descriptor>${project.basedir}/src/main/assembly/distribution-with-development-data.xml</descriptor>
                   </descriptors>
                 </configuration>
               </execution>

@@ -21,7 +21,7 @@ parameters:
         properties: 'mail.smtp.host=localhost, mail.smtp.port=2525'
     repository:
         directory: 'repository'
-        config: '/org/hippoecm/repository/repository-dev.xml'
+        config: '/org/hippoecm/repository/repository.xml'
         dataSource:
             driverClassName: 'org.h2.Driver'
             url: 'jdbc:h2:./repository/repodb/repodb;MVCC=TRUE'
@@ -105,7 +105,7 @@ hipshoot:
                               testOnReturn: '${parameters.repository.dataSource.testOnReturn}'
                               timeBetweenEvictionRunsMillis: '${parameters.repository.dataSource.timeBetweenEvictionRunsMillis}'
                               minEvictableIdleTimeMillis: '${parameters.repository.dataSource.minEvictableIdleTimeMillis}'
- 
+
 ---
 
 spring:

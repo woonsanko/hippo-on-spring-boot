@@ -1,0 +1,6 @@
+definitions:
+  config:
+    /hst:hst/hst:configurations/hippoonspringboot/hst:catalog:
+      jcr:primaryType: hst:catalog
+      /hippoonspringboot-catalog:
+        jcr:primaryType: hst:containeritempackage

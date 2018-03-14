@@ -1,0 +1,7 @@
+/content/gallery/hippoonspringboot:
+  jcr:primaryType: hippogallery:stdImageGallery
+  jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+  jcr:uuid: c57cba44-26fc-4209-9c22-1f052537bab0
+  hippo:name: Example Hippo On Spring Boot
+  hippostd:foldertype: [new-image-folder]
+  hippostd:gallerytype: ['hippogallery:imageset']
