@@ -61,7 +61,7 @@
   <properties>
 
     <!--***START temporary override of versions*** -->
-    <spring.version>4.3.4.RELEASE</spring.version>
+    <spring.version>4.3.20.RELEASE</spring.version>
     <!-- ***END temporary override of versions*** -->
 
     <forge.hipshoot.version>0.1.3</forge.hipshoot.version>
