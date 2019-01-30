@@ -1,9 +1,0 @@
----
-applications:
-- name: hippo-on-spring-boot
-  memory: 2G
-  timeout: 180
-  env:
-    JBP_CONFIG_TOMCAT: '{ tomcat: { version: 8.5.+ } }'
-    JBP_CONFIG_SPRING_AUTO_RECONFIGURATION: '[enabled: false]'
-    #SPRING_PROFILES_ACTIVE: 'prod'

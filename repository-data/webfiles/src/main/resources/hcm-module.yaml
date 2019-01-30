@@ -1,5 +1,0 @@
-group: 
-  name: hippo-on-spring-boot
-  after: hippo-cms
-project: hippo-on-spring-boot
-module: hippo-on-spring-boot-repository-data-webfiles

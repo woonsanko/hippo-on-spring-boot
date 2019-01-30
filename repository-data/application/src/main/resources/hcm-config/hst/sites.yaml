@@ -1,5 +1,0 @@
-definitions:
-  config:
-    /hst:hst/hst:sites/hippoonspringboot:
-      jcr:primaryType: hst:site
-      hst:content: /content/documents/hippoonspringboot

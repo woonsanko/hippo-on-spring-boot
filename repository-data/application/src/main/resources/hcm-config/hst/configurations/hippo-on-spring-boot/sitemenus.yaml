@@ -1,4 +1,0 @@
-definitions:
-  config:
-    /hst:hst/hst:configurations/hippoonspringboot/hst:sitemenus:
-      jcr:primaryType: hst:sitemenus

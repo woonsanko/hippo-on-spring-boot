@@ -1,6 +1,0 @@
-group: 
-  name: hippo-on-spring-boot
-  after: hippo-cms
-project: hippo-on-spring-boot
-module:
-  name: hippo-on-spring-boot-repository-data-application
