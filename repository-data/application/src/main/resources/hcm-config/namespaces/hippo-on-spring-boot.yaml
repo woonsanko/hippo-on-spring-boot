@@ -1,0 +1,6 @@
+definitions:
+  config:
+    /hippo:namespaces/hippoonspringboot:
+      jcr:primaryType: hipposysedit:namespace
+      jcr:mixinTypes: ['mix:referenceable']
+      jcr:uuid: aa8c1fd5-c8a1-46a9-9d87-1f8cad57e6f1

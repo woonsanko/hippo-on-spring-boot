@@ -1,0 +1,5 @@
+definitions:
+  namespace:
+    hippoonspringboot:
+      uri: http://www.hippoonspringboot.com/hippoonspringboot/nt/1.0
+      cnd: namespaces/hippo-on-spring-boot.cnd

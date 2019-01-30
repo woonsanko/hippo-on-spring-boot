@@ -16,7 +16,7 @@ In summary,
 ## Build
 
 ```bash
-$ mvn clean package
+$ mvn clean verify
 ```
 
 ## Run

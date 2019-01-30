@@ -1,0 +1,5 @@
+group: 
+  name: hippo-on-spring-boot
+project: hippo-on-spring-boot
+module:
+  name: hippo-on-spring-boot-repository-data-webfiles

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<project>
+    <applicationSubModule>application</applicationSubModule>
+    <cmsDependenciesModule>cms-dependencies</cmsDependenciesModule>
+    <cmsModule>cms</cmsModule>
+    <confirmParams>false</confirmParams>
+    <developmentSubModule>development</developmentSubModule>
+    <enterprise>false</enterprise>
+    <extraTemplates>true</extraTemplates>
+    <hstRoot>/hst:hippoonspringboot</hstRoot>
+    <projectNamespace>hippoonspringboot</projectNamespace>
+    <repositoryDataModule>repository-data</repositoryDataModule>
+    <selectedBeansPackage>com.github.woonsanko.examples.hippoboot.beans</selectedBeansPackage>
+    <selectedComponentsPackage>com.github.woonsanko.examples.hippoboot.components</selectedComponentsPackage>
+    <selectedProjectPackage>com.github.woonsanko.examples.hippoboot</selectedProjectPackage>
+    <selectedRestPackage>com.github.woonsanko.examples.hippoboot.rest</selectedRestPackage>
+    <setupDone>true</setupDone>
+    <siteContextPath>/site</siteContextPath>
+    <siteModule>site</siteModule>
+    <useSamples>true</useSamples>
+    <webfileBundleName>site</webfileBundleName>
+    <webfilesSubModule>webfiles</webfilesSubModule>
+</project>

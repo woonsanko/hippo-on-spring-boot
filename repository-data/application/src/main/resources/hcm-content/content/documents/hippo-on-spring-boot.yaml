@@ -1,0 +1,9 @@
+/content/documents/hippoonspringboot:
+  .meta:order-before: administration
+  jcr:primaryType: hippostd:folder
+  jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:referenceable']
+  jcr:uuid: 257b9cb0-d644-478f-9817-610fc71db3ec
+  hippo:name: Example Hippo On Spring Boot
+  hippostd:foldertype: [new-translated-folder, new-document]
+  hippotranslation:id: 996bcac5-86cf-49b5-a7a3-16a74863e814
+  hippotranslation:locale: en
