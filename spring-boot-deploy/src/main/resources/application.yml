@@ -1,0 +1,155 @@
+#  Licensed to the Apache Software Foundation (ASF) under one or more
+#  contributor license agreements.  See the NOTICE file distributed with
+#  this work for additional information regarding copyright ownership.
+#  The ASF licenses this file to You under the Apache License, Version 2.0
+#  (the "License"); you may not use this file except in compliance with
+#  the License.  You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#  See the License for the specific language governing permissions and
+#  limitations under the License.
+
+
+parameters:
+    catalina:
+        deployableWars: 'cms.war, site.war'
+    mail:
+        properties: 'mail.smtp.host=localhost, mail.smtp.port=2525'
+    repository:
+        directory: 'repository'
+        config: '/org/hippoecm/repository/repository.xml'
+        dataSource:
+            driverClassName: 'org.h2.Driver'
+            url: 'jdbc:h2:./repository/repodb/repodb;MVCC=TRUE'
+            username: 'SA'
+            password: ''
+            initialSize: '2'
+            maxTotal: '20'
+            maxIdle: '10'
+            minIdle: '2'
+            maxWaitMillis: '10000'
+            validationQuery: 'SELECT 1'
+            testWhileIdle: 'false'
+            testOnBorrow: 'true'
+            testOnReturn: 'false'
+            timeBetweenEvictionRunsMillis: '10000'
+            minEvictableIdleTimeMillis: '60000'
+
+logging:
+    level:
+        root: 'WARN'
+        org.springframework.boot: 'INFO'
+        org.onehippo.forge.hipshoot.spring.boot.support: 'INFO'
+        org.hippoecm.hst.core.container.DiagnosticReportingValve: 'INFO'
+        freemarker.servlet: 'FATAL'
+        org.apache.wicket.Localizer: 'ERROR'
+        org.hippoecm.repository.jackrabbit.persistence: 'INFO'
+        org.hippoecm.repository.updater: 'INFO'
+        org.apache.jackrabbit.core.persistence.bundle: 'INFO'
+        org.apache.jackrabbit.core.state: 'ERROR'
+        org.apache.jackrabbit.core.ItemManager: 'ERROR'
+        org.apache.jackrabbit.core.persistence.bundle.util.LRUNodeIdCache: 'ERROR'
+        com.johnhancock.cms: 'DEBUG'
+
+server:
+    port: '${port:8080}'
+    tomcat:
+        basedir: 'target/embedded-tomcat'
+
+hipshoot:
+    embedded:
+        catalina:
+            persistSession: 'false'
+            appBase: '${server.tomcat.basedir}/webapps'
+            wars: ${parameters.catalina.deployableWars}
+            server:
+                defaultContext:
+                    resources:
+                        cachingAllowed: 'true'
+                        cacheMaxSize: '40960'
+                    parameters:
+                        - name: 'repository-address'
+                          value: 'rmi://127.0.0.1:1099/hipporepository'
+                          override: 'false'
+                        - name: 'repository-directory'
+                          value: '${parameters.repository.directory}'
+                          override: 'false'
+                        - name: 'repository-config'
+                          value: '${parameters.repository.config}'
+                          override: 'false'
+                    namingResources:
+                        - name: 'mail/Session'
+                          auth: 'Container'
+                          type: 'javax.mail.Session'
+                          propertiesString: '${parameters.mail.properties}'
+                        - name: 'jdbc/repositoryDS'
+                          auth: 'Container'
+                          type: 'javax.sql.DataSource'
+                          properties:
+                              driverClassName: '${parameters.repository.dataSource.driverClassName}'
+                              url: '${parameters.repository.dataSource.url}'
+                              username: '${parameters.repository.dataSource.username}'
+                              password: '${parameters.repository.dataSource.password}'
+                              initialSize: '${parameters.repository.dataSource.initialSize}'
+                              maxTotal: '${parameters.repository.dataSource.maxTotal}'
+                              maxIdle: '${parameters.repository.dataSource.maxIdle}'
+                              minIdle: '${parameters.repository.dataSource.minIdle}'
+                              maxWaitMillis: '${parameters.repository.dataSource.maxWaitMillis}'
+                              validationQuery: '${parameters.repository.dataSource.validationQuery}'
+                              testWhileIdle: '${parameters.repository.dataSource.testWhileIdle}'
+                              testOnBorrow: '${parameters.repository.dataSource.testOnBorrow}'
+                              testOnReturn: '${parameters.repository.dataSource.testOnReturn}'
+                              timeBetweenEvictionRunsMillis: '${parameters.repository.dataSource.timeBetweenEvictionRunsMillis}'
+                              minEvictableIdleTimeMillis: '${parameters.repository.dataSource.minEvictableIdleTimeMillis}'
+
+---
+
+spring:
+    profiles: prod
+
+parameters:
+    mail:
+        properties: 'mail.smtp.host=mail.example.com, mail.smtp.port=25'
+    repository:
+        config: '/org/hippoecm/repository/repository-prod.xml'
+        dataSource:
+            driverClassName: 'com.mysql.jdbc.Driver'
+            url: 'jdbc:mysql://db.example.com/hippodb'
+            username: 'hippo'
+            password: 'hippo'
+
+---
+
+spring:
+    profiles: acct
+
+parameters:
+    mail:
+        properties: 'mail.smtp.host=mail.acct.example.com, mail.smtp.port=25'
+    repository:
+        config: '/org/hippoecm/repository/repository-acct.xml'
+        dataSource:
+            driverClassName: 'com.mysql.jdbc.Driver'
+            url: 'jdbc:mysql://db.acct.example.com/hippodb'
+            username: 'hippo'
+            password: 'hippo'
+
+---
+
+spring:
+    profiles: test
+
+parameters:
+    mail:
+        properties: 'mail.smtp.host=mail.test.example.com, mail.smtp.port=25'
+    repository:
+        config: '/org/hippoecm/repository/repository-test.xml'
+        dataSource:
+            driverClassName: 'com.mysql.jdbc.Driver'
+            url: 'jdbc:mysql://db.test.example.com/hippodb'
+            username: 'hippo'
+            password: 'hippo'

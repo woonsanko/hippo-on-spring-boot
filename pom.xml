@@ -63,6 +63,9 @@
     <!--***START temporary override of versions*** -->
     <!-- ***END temporary override of versions*** -->
 
+    <forge.hipshoot.version>2.1.0</forge.hipshoot.version>
+    <servlet-api.version>4.0.1</servlet-api.version>
+
     <essentials.version>13.0.0</essentials.version>
     <jsp-api.version>2.2</jsp-api.version>
     <taglibs.version>1.2.5</taglibs.version>
@@ -79,10 +82,30 @@
       <name>Hippo maven 2 repository.</name>
       <url>https://maven.onehippo.com/maven2/</url>
     </repository>
+    <repository>
+      <id>hippo-maven2-forge</id>
+      <name>Hippo Maven 2 Forge Repository</name>
+      <url>http://maven.onehippo.com/maven2-forge/</url>
+    </repository>
   </repositories>
 
   <dependencyManagement>
+
     <dependencies>
+
+      <dependency>
+        <groupId>org.onehippo.forge.hipshoot</groupId>
+        <artifactId>hipshoot-spring-boot-support</artifactId>
+        <version>${forge.hipshoot.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>javax.servlet-api</artifactId>
+        <version>${servlet-api.version}</version>
+        <scope>provided</scope>
+      </dependency>
+
       <dependency>
         <groupId>javax.servlet.jsp</groupId>
         <artifactId>jsp-api</artifactId>
@@ -182,6 +205,7 @@
         <module>cms</module>
         <module>site</module>
         <module>essentials</module>
+        <module>spring-boot-deploy</module>
       </modules>
     </profile>
 
